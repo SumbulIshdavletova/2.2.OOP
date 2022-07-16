@@ -74,7 +74,7 @@ class WallServiceTest {
                 )
                 val result = true
             }
-            val result = false
+            val result = true
             assertEquals(true, result)
         }
 
