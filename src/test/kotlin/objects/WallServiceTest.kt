@@ -73,9 +73,9 @@ class WallServiceTest {
                     postponedId = 1
                 )
                 val result = true
+                assertEquals(true, result)
             }
-            val result = true
-            assertEquals(true, result)
+            val result = false
         }
 
     }
