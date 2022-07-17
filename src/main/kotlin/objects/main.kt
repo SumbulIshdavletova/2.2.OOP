@@ -105,7 +105,6 @@ object WallService {
         }
         return false
     }
-
 }
 
 fun main() {

@@ -1,9 +1,11 @@
 package objects
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class WallServiceTest {
+    var result = true
 
     @Test
     fun addCommitted() {
@@ -47,7 +49,7 @@ class WallServiceTest {
         var posts = emptyArray<Post>()
 
         for ((index, post) in WallService.posts.withIndex()) {
-            if (post.id == index) {
+            if (post.id != index) {
                 WallService.posts[index] = post.copy(
                     ownerId = 1,
                     fromId = 1,
@@ -72,13 +74,13 @@ class WallServiceTest {
                     donut = donutObject(false, 0, true, "all"),
                     postponedId = 1
                 )
-                val result = true
-                assertEquals(true, result)
             }
-            val result = false
-        }
+            val result = service.update(post)
 
+            assertTrue(result)
+        }
     }
+
 
     @Test
     fun updateFalse() {
@@ -111,11 +113,11 @@ class WallServiceTest {
                     donut = donutObject(false, 0, true, "all"),
                     postponedId = 1
                 )
-                val result = true
             }
-            val result = false
-            assertEquals(false, result)
+            val result = service.update(post)
+
+            assertTrue(result)
         }
     }
-
 }
+
