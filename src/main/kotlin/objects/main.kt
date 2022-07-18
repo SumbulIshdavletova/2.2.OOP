@@ -100,7 +100,7 @@ object WallService {
 
     fun update(post: Post): Boolean {
         for ((id, post) in posts.withIndex()) {
-            if (post.id != id) {
+            if (post.id == id) {
                 posts[id] = post.copy(
                     ownerId = 1,
                     fromId = 1,
