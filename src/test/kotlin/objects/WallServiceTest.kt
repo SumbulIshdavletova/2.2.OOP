@@ -1,7 +1,6 @@
 package objects
 
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Test
 
 class WallServiceTest {
@@ -48,35 +47,32 @@ class WallServiceTest {
         val service = WallService
         var posts = emptyArray<Post>()
 
-        for ((index, post) in WallService.posts.withIndex()) {
-            if (post.id != index) {
-                WallService.posts[index] = post.copy(
-                    ownerId = 1,
-                    fromId = 1,
-                    createdBy = 1,
-                    text = "content2",
-                    replyOwnerId = 1,
-                    replyPostId = 1,
-                    friendsOnly = false,
-                    comments = commentsObject(1, true, true, true, true),
-                    copyright = copyrightObject(1, "link2", "name2", "type2"),
-                    likes = likesObject(1, true, true, true),
-                    reposts = repostsObject(3, true),
-                    views = viewsObject(8),
-                    postType = "type2",
-                    signerId = 1,
-                    canPin = false,
-                    canDelete = false,
-                    canEdit = true,
-                    isPinned = false,
-                    markedAsAds = false,
-                    isFavorite = false,
-                    donut = donutObject(false, 0, true, "all"),
-                    postponedId = 1
-                )
-            }
+        for ((id, post) in WallService.posts.withIndex()) {
+            WallService.posts[id] = post.copy(
+                ownerId = 1,
+                fromId = 1,
+                createdBy = 1,
+                text = "content2",
+                replyOwnerId = 1,
+                replyPostId = 1,
+                friendsOnly = false,
+                comments = commentsObject(1, true, true, true, true),
+                copyright = copyrightObject(1, "link2", "name2", "type2"),
+                likes = likesObject(1, true, true, true),
+                reposts = repostsObject(3, true),
+                views = viewsObject(8),
+                postType = "type2",
+                signerId = 1,
+                canPin = false,
+                canDelete = false,
+                canEdit = true,
+                isPinned = false,
+                markedAsAds = false,
+                isFavorite = false,
+                donut = donutObject(false, 0, true, "all"),
+                postponedId = 1
+            )
             val result = service.update(post)
-
             assertTrue(result)
         }
     }
@@ -85,11 +81,11 @@ class WallServiceTest {
     @Test
     fun updateFalse() {
         val service = WallService
-        var posts = emptyArray<Post>()
 
-        for ((index, post) in WallService.posts.withIndex()) {
-            if (post.id != index) {
-                WallService.posts[index] = post.copy(
+        var posts = emptyArray<Post>()
+        for ((id, post) in WallService.posts.withIndex()) {
+            if (post.id != id) {
+                WallService.posts[id] = post.copy(
                     ownerId = 1,
                     fromId = 1,
                     createdBy = 1,
@@ -112,11 +108,11 @@ class WallServiceTest {
                     isFavorite = false,
                     donut = donutObject(false, 0, true, "all"),
                     postponedId = 1
+
                 )
             }
             val result = service.update(post)
-
-            assertTrue(result)
+            assertFalse(result)
         }
     }
 }

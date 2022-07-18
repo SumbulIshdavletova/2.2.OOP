@@ -69,14 +69,39 @@ object WallService {
     var posts = emptyArray<Post>()
 
     fun add(post: Post): Post {
-        posts += post
-        return posts[0]
+        posts += Post(
+            id = 1,
+            ownerId = 1,
+            fromId = 1,
+            createdBy = 1,
+            date = 2000,
+            text = "content2",
+            replyOwnerId = 1,
+            replyPostId = 1,
+            friendsOnly = false,
+            comments = commentsObject(1, true, true, true, true),
+            copyright = copyrightObject(1, "link2", "name2", "type2"),
+            likes = likesObject(1, true, true, true),
+            reposts = repostsObject(3, true),
+            views = viewsObject(8),
+            postType = "type2",
+            signerId = 1,
+            canPin = false,
+            canDelete = false,
+            canEdit = true,
+            isPinned = false,
+            markedAsAds = false,
+            isFavorite = false,
+            donut = donutObject(false, 0, true, "all"),
+            postponedId = 1
+        )
+        return posts.last()
     }
 
     fun update(post: Post): Boolean {
-        for ((index, post) in posts.withIndex()) {
-            if (post.id == index) {
-                posts[index] = post.copy(
+        for ((id, post) in posts.withIndex()) {
+            if (post.id != id) {
+                posts[id] = post.copy(
                     ownerId = 1,
                     fromId = 1,
                     createdBy = 1,
@@ -102,10 +127,12 @@ object WallService {
                 )
                 return true
             }
+
         }
         return false
     }
 }
+
 
 fun main() {
 
