@@ -20,9 +20,9 @@ class WallServiceTest {
                 replyOwnerId = 1,
                 replyPostId = 1,
                 friendsOnly = false,
-                comments = commentsObject(1, true, true, true, true),
+                comments = null,
                 copyright = copyrightObject(1, "link", "name", "type"),
-                likes = likesObject(1, true, true, true),
+                likes = null,
                 reposts = repostsObject(3, true),
                 views = viewsObject(8),
                 postType = "type",
@@ -34,7 +34,8 @@ class WallServiceTest {
                 markedAsAds = false,
                 isFavorite = false,
                 donut = donutObject(false, 0, true, "all"),
-                postponedId = 1
+                postponedId = 1,
+                attachment = arrayOf(Audio("type","song"))
             )
         )
         val result = post.id != 0
